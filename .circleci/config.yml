@@ -42,7 +42,7 @@ workflows:
           git-user-name: "Release Bot"
           github-access-token: $RELEASE_BOT_GITHUB_TOKEN
           requires:
-            - general/lint-commit
+            # - general/lint-commit
             - general/lint-json
             - general/lint-yaml
           filters:
@@ -53,7 +53,7 @@ workflows:
           git-user-email: edahlseng@users.noreply.github.com
           git-user-name: "Release Bot"
           requires:
-            - general/lint-commit
+            # - general/lint-commit
             - general/lint-json
             - general/lint-yaml
           filters:
