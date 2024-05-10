@@ -1,7 +1,6 @@
 {
   description = "Provides webhooks for Shopify";
 
-  # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-23.05";
 
   outputs =
