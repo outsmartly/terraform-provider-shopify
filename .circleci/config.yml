@@ -47,7 +47,7 @@ workflows:
             - general/lint-yaml
           filters:
             branches:
-              only: master
+              only: main
       - general/tag:
           git-ssh-fingerprint: 5f:0c:aa:35:94:35:cc:38:76:c0:3d:33:a0:bc:69:27
           git-user-email: edahlseng@users.noreply.github.com
@@ -58,13 +58,13 @@ workflows:
             - general/lint-yaml
           filters:
             branches:
-              only: master
+              only: main
       - build-artifacts:
           requires:
             - general/tag
           filters:
             branches:
-              only: master
+              only: main
       - general/create-github-release:
           context: Release Bot
           github-access-token: $RELEASE_BOT_GITHUB_TOKEN
@@ -73,4 +73,4 @@ workflows:
             - build-artifacts
           filters:
             branches:
-              only: master
+              only: main
