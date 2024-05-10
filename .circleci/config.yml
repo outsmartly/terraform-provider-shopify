@@ -25,9 +25,10 @@ workflows:
   main:
     jobs:
       - general/install-dependencies-npm
-      - general/lint-commit:
-          requires:
-            - general/install-dependencies-npm
+      # skip this for now since it requires compare against master and we only have main
+      # - general/lint-commit:
+      #     requires:
+      #       - general/install-dependencies-npm
       - general/lint-json:
           requires:
             - general/install-dependencies-npm
