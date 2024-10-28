@@ -30,7 +30,7 @@ release:
 	@echo "Hashing binaries..."
 	shasum -a 256 dist/*.zip > dist/terraform-provider-shopify_$$(git describe --tags)_SHA256SUMS
 	@echo "Signing binaries..."
-	gpg --local-user 1BE907FC25CA01E6 --detach-sign dist/terraform-provider-shopify_$$(git describe --tags)_SHA256SUMS
+	(cd dist && gpg --local-user 1BE907FC25CA01E6 --detach-sign dist/terraform-provider-shopify_$$(git describe --tags)_SHA256SUMS)
 	@echo "Copying manifest..."
 	cp terraform-registry-manifest.json dist/terraform-provider-shopify_$$(git describe --tags)_manifest.json
 	gh release create $$(git describe --tags) dist/*.zip dist/terraform-provider-shopify_$$(git describe --tags)_SHA256SUMS.sig dist/terraform-provider-shopify_$$(git describe --tags)_SHA256SUMS dist/terraform-provider-shopify_$$(git describe --tags)_manifest.json --repo outsmartly/terraform-provider-shopify
