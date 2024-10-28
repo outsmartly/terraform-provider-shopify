@@ -48,6 +48,9 @@ fmt:
 fmtcheck:
 	@sh -c "'$(CURDIR)/scripts/gofmtcheck.sh'"
 
+docs:
+	tfplugindocs generate
+
 .PHONY: vendor-status
 vendor-status:
 	@govendor status

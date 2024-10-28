@@ -73,6 +73,7 @@
               gopls
               gotools
               go-tools
+              terraform-plugin-docs
             ];
           };
         }
