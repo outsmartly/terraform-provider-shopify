@@ -67,6 +67,30 @@ terraform import shopify_webhook.example 440719081554
 Building The Provider
 ---------------------
 
+### Prerequisites
+
+* Go
+* GNU Make
+* tfplugindocs
+^ you will have to figure out how to install these yourself
+
+or, you can just install Nix, then run `nix develop -c $SHELL` to enter a shell with all of these tools installed!
+
+### Building
 ```shell
 make build # `gnumake build` on macOS
 ```
+
+or 
+
+```shell
+nix build .
+```
+
+or 
+
+```shell
+nix build github:outsmartly/terraform-provider-shopify
+```
+
+
