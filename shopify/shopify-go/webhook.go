@@ -42,7 +42,7 @@ type Webhook struct {
 	Address    string `json:"address"`
 	Format     string `json:"format"`
 	Created_at string `json:"created_at"`
-	Updated_at string `json."updated_at"`
+	Updated_at string `json:"updated_at"`
 }
 
 type WebhookResponse struct {
