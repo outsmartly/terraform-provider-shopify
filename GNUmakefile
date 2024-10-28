@@ -1,6 +1,7 @@
 TEST?=$$(go list ./... |grep -v 'vendor')
 GOFMT_FILES?=$$(find . -name '*.go' |grep -v vendor)
 TARGETS=darwin linux windows
+ARCHS=amd64 arm64 arm
 WEBSITE_REPO=github.com/hashicorp/terraform-website
 PKG_NAME=shopify
 export GOPATH ?= $(HOME)/go
@@ -12,13 +13,24 @@ default: build
 build: fmtcheck
 	go build -o terraform-provider-shopify main.go
 
-.PHONY: targets
-targets: $(TARGETS)
+.PHONY: clean
+clean:
+	rm -rf dist
 
-.PHONY: $(TARGETS)
-$(TARGETS):
-	GOOS=$@ GOARCH=amd64 CGO_ENABLED=0 go build -o "dist/terraform-provider-shopify_$$(git describe --tags)_$@_amd64"
-	zip -j dist/terraform-provider-shopify_$$(git describe --tags)_$@_amd64.zip dist/terraform-provider-shopify_$$(git describe --tags)_$@_amd64
+.PHONY: targets
+targets:
+	parallel --tagstring "[{1}-{2}]" '[[ "{1}" == "darwin" && "{2}" == "arm" ]] && echo "Skipping arm build for darwin" || \
+	(GOOS={1} GOARCH={2} CGO_ENABLED=0 go build -o "dist/terraform-provider-shopify_$$(git describe --tags)_{1}_{2}" && \
+	zip -j "dist/terraform-provider-shopify_$$(git describe --tags)_{1}_{2}.zip" "dist/terraform-provider-shopify_$$(git describe --tags)_{1}_{2}")' ::: $(TARGETS) ::: $(ARCHS)
+
+.PHONY: release
+release:
+	$(MAKE) clean
+	$(MAKE) targets
+	@echo "Hashing binaries..."
+	shasum -a 256 dist/*.zip > dist/terraform-provider-shopify_$$(git describe --tags)_SHA256SUMS
+	@echo "Signing binaries..."
+	gpg --local-user 1BE907FC25CA01E6 --detach-sign dist/terraform-provider-shopify_$$(git describe --tags)_SHA256SUMS
 
 .PHONY: test
 test: fmtcheck

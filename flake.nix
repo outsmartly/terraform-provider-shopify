@@ -69,10 +69,12 @@
         {
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
+              gnupg
               go
               gopls
-              gotools
               go-tools
+              gotools
+              parallel
               terraform-plugin-docs
             ];
           };

@@ -71,6 +71,7 @@ Building The Provider
 
 * Go
 * GNU Make
+* GNU Parallel
 * tfplugindocs
 ^ you will have to figure out how to install these yourself
 
