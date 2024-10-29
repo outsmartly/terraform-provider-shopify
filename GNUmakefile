@@ -10,7 +10,7 @@ export GOPATH ?= $(HOME)/go
 default: build
 
 .PHONY: build
-build: fmtcheck
+build: check
 	go build -o terraform-provider-shopify main.go
 
 .PHONY: clean
@@ -55,13 +55,9 @@ vet:
 		exit 1; \
 	fi
 
-.PHONY: fmt
-fmt:
-	gofmt -w $(GOFMT_FILES)
-
-.PHONY: fmtcheck
-fmtcheck:
-	@sh -c "'$(CURDIR)/scripts/gofmtcheck.sh'"
+.PHONY: check
+check:
+	npm run check
 
 docs:
 	tfplugindocs generate

@@ -5,9 +5,9 @@
   "description": "Shopify Terraform Provider",
   "scripts": {
     "check": "concurrently -c auto command 'npm:check:*'",
-    "check:format": "prettier --cache --check .",
-    "check:go": "make fmt && make vet",
-    "format": "prettier --cache --write .",
+    "check:format": "prettier --cache --check . && gofmt -l .",
+    "check:go": "make vet",
+    "format": "prettier --cache --write . && gofmt -w .",
     "release": "standard-version",
     "test": "make test && make testacc"
   },
