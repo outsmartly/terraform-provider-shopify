@@ -72,6 +72,7 @@
               gnupg
               go
               gopls
+              goreleaser
               go-tools
               gotools
               parallel
