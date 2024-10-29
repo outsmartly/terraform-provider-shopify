@@ -1,5 +1,6 @@
 {
   "name": "terraform-provider-shopify",
+  "type": "module",
   "version": "0.2.12",
   "description": "Shopify Terraform Provider",
   "scripts": {
@@ -8,17 +9,12 @@
     "check:go": "make fmt && make vet",
     "format": "prettier --cache --write .",
     "release": "standard-version",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test && make testacc"
   },
   "author": "Eric Dahlseng & Outsmartly",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^9.0.1",
     "prettier": "^3.3.3"
-  },
-  "standard-version": {
-    "skip": {
-      "tag": true
-    }
   }
 }
