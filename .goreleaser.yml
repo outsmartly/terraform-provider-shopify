@@ -26,9 +26,8 @@ builds:
     - '386'
     - arm
     - arm64
-  # use only stable architectures
+  # use only stable architecture
   goarm:
-    - 6
     - 7
   ignore:
     - goos: darwin
