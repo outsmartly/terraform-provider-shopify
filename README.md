@@ -1,14 +1,13 @@
-Shopify Terraform Provider
-==========================
+# Shopify Terraform Provider
 
-Setup
------
+## Setup
 
 From within the Shopify Admin Interface:
-* Click on "Apps" from the list on the left hand sidebar (or go to <yourstore>.myshopify.com/admin/apps
-* Click on "Manage private apps" (or go to <yourstore>.myshopify.com/admin/apps/private)
-* Create a new private app
-* Configure the provider as follows:
+
+- Click on "Apps" from the list on the left hand sidebar (or go to <yourstore>.myshopify.com/admin/apps
+- Click on "Manage private apps" (or go to <yourstore>.myshopify.com/admin/apps/private)
+- Create a new private app
+- Configure the provider as follows:
 
 ```hcl
 provider "shopify" {
@@ -17,8 +16,7 @@ provider "shopify" {
 }
 ```
 
-Resources
----------
+## Resources
 
 ### shopify_webhook
 
@@ -44,17 +42,17 @@ resource "shopify_webhook" "example" {
 
 The following arguments are supported:
 
-* topic (Required) - The event topic for which webhook messages should be sent. See the Shopify documentation for the full list of available topics.
-* address (Required) - The full URL to send webhooks to
-* format (Required) - The format to send webhook messages in. Can be either `json` or `xml`.
+- topic (Required) - The event topic for which webhook messages should be sent. See the Shopify documentation for the full list of available topics.
+- address (Required) - The full URL to send webhooks to
+- format (Required) - The format to send webhook messages in. Can be either `json` or `xml`.
 
 #### Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
 
-* topic - The event topic for which webhook messages are sent
-* address - The full URL to send webhooks to
-* format - The format to send webhook messages in. Will be one of `json` or `xml`.
+- topic - The event topic for which webhook messages are sent
+- address - The full URL to send webhooks to
+- format - The format to send webhook messages in. Will be one of `json` or `xml`.
 
 #### Import
 
@@ -64,34 +62,32 @@ Instances can be imported using the id, e.g.
 terraform import shopify_webhook.example 440719081554
 ```
 
-Building The Provider
----------------------
+## Building The Provider
 
 ### Prerequisites
 
-* Go
-* GNU Make
-* GNU Parallel
-* tfplugindocs
-^ you will have to figure out how to install these yourself
+- Go
+- GNU Make
+- GNU Parallel
+- tfplugindocs
+  ^ you will have to figure out how to install these yourself
 
 or, you can just install Nix, then run `nix develop -c $SHELL` to enter a shell with all of these tools installed!
 
 ### Building
+
 ```shell
 make build # `gnumake build` on macOS
 ```
 
-or 
+or
 
 ```shell
 nix build .
 ```
 
-or 
+or
 
 ```shell
 nix build github:outsmartly/terraform-provider-shopify
 ```
-
-
