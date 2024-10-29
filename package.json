@@ -1,6 +1,6 @@
 {
   "name": "terraform-provider-shopify",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Shopify Terraform Provider",
   "scripts": {
     "lint:commit": "commitlint",
